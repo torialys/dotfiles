@@ -110,7 +110,7 @@ endif
 " BEFORE CONFIG
 " =============================================================================
 " To override all the included bundles : let g:override_ca13_bundles = 1
-" let g:ca13_bundle_groups=[ 'general', 'programming', 'neocomplete', 'blade', 'c', 'csv', 'docker', 'go', 'html', 'javascript', 'nginx', 'php', 'python', 'ruby', 'scala', 'sql', 'txt', 'writting' ]
+" let g:ca13_bundle_groups=[ 'general', 'programming', 'neocomplete', 'blade', 'c', 'csv', 'docker', 'go', 'html', 'javascript', 'nginx', 'php', 'python', 'ruby', 'scala', 'sql', 'writting' ]
 let s:vimrc_before = fnamemodify(resolve(expand('<sfile>')), ':p:h').'/.vimrc.before'
 if filereadable(s:vimrc_before)
   execute 'source' s:vimrc_before
@@ -302,8 +302,6 @@ if !exists("g:override_ca13_bundles")
   " Python
   " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   if count(g:ca13_bundle_groups, 'python')
-    " Pick either python-mode or pyflakes & pydoc
-    "Plug 'davidhalter/jedi-vim', { 'for': 'python' }
     Plug 'klen/python-mode'
     Plug 'yssource/python.vim'
     Plug 'python_match.vim'
@@ -942,10 +940,10 @@ if exists("*mkdir") "auto-create directories for new files
 endif
 
 " :Se SearchItem scss
-"command -nargs=+ Se execute 'vimgrep /' . [<f-args>][0] . '/ **/*.' . [<f-args>][1]
+"command -nargs=+ Search execute 'vimgrep /' . [<f-args>][0] . '/ **/*.' . [<f-args>][1]
 
 " =============================================================================
-" PLUGINS SPECIFIC
+" PLUGINS
 " =============================================================================
 
 " Ack
@@ -1139,7 +1137,6 @@ endif
 
 " Sauce
 " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-" sauces are stored (~/.vimsauce)
 if isdirectory(expand(s:cache_dir, 1))
   call CreateDir(s:cache_dir . '/vimsauce/')
   let g:sauce_path = expand(s:cache_dir, 1) . '/vimsauce/'
@@ -1490,9 +1487,9 @@ elseif count(g:ca13_bundle_groups, 'neocomplcache')
   let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
   let g:neocomplcache_omni_patterns.go = '\h\w*\.\?'
 
-" Normal Vim omni-completion {
+" Normal Vim omni-completion
 " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-" To disable omni complete, add the following to your .vimrc.before.local file:
+" To disable omni complete, add the following to your .vimrc.before file:
 " let g:ca13_no_omni_complete = 1
 elseif !exists('g:ca13_no_omni_complete')
   " Enable omni-completion.
@@ -1514,62 +1511,3 @@ let s:vimrc_local = fnamemodify(resolve(expand('<sfile>')), ':p:h').'/.vimrc.loc
   if filereadable(s:vimrc_local)
   execute 'source' s:vimrc_local
 endif
-
-" =============================================================================
-" Dockerfile.vim
-" LaTeX-Box
-" PIV
-" Syntastic
-" Txtfmt-The-Vim-Highlighter
-" YouCompleteMe
-" ack.vim
-" ag.vim
-" cpp-vim
-" csv.vim
-" ctrlp.vim
-" dbext.vim
-" editorconfig-vim
-" emmet-vim
-" gitv
-" html5.vim
-" i3-vim-syntax
-" indentLine
-" molokai
-" nerdtree
-" nginx-vim-syntax
-" python-mode
-" supertab
-" tmux-complete.vim
-" ultisnips
-" vim-airline
-" vim-ansible-yaml
-" vim-blade
-" vim-bookmarks
-" vim-coffee-script
-" vim-colors-solarized
-" vim-cpp-enhanced-highlight
-" vim-css3-syntax
-" vim-emoji
-" vim-emoji-complete
-" vim-fugitive
-" vim-haml
-" vim-jade
-" vim-javascript
-" vim-javascript-syntax
-" vim-json
-" vim-less
-" vim-markdown
-" vim-mustache-handlebars
-" vim-php-namespace
-" vim-phpqa
-" vim-rails
-" vim-sauce
-" vim-scala
-" vim-signify
-" vim-snippets
-" vim-stylus
-" vim-tbone
-" vim-twig
-" vim-writingsyntax
-" =============================================================================
-
