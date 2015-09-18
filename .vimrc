@@ -262,13 +262,15 @@ if !exists("g:override_ca13_bundles")
   " Html
   " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   if count(g:ca13_bundle_groups, 'html')
-    Plug 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'scss', 'sass' ] }
     Plug 'othree/html5.vim', { 'for': 'html' }
     Plug 'mustache/vim-mustache-handlebars', { 'for': [ 'html', 'mustache', 'hbs' ] }
     Plug 'groenewege/vim-less', { 'for': ['less', 'css'] }
     Plug 'wavded/vim-stylus', { 'for' :['sass', 'scss', 'css'] }
     Plug 'tpope/vim-haml', { 'for': ['haml', 'sass', 'scss'] }
     Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+    Plug 'parkr/vim-jekyll'
+    Plug 'tpope/vim-liquid'
   endif
 
   " Javascript
@@ -337,6 +339,7 @@ if !exists("g:override_ca13_bundles")
     Plug 'reedes/vim-textobj-quote'
     Plug 'reedes/vim-wordy'
     Plug 'reedes/vim-pencil'
+    Plug 'plasticboy/vim-markdown'
   endif
 
   " Yaml
@@ -614,6 +617,26 @@ map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 
+"Toggles whether or not the current window is automatically zoomed
+" From http://vim.wikia.com/wiki/Window_zooming_convenience
+function! ToggleMaxWins()
+  if exists('g:windowMax')
+    au! maxCurrWin
+    wincmd =
+    unlet g:windowMax
+  else
+    augroup maxCurrWin
+      au BufEnter * wincmd _ | wincmd |
+      " only max it vertically
+      "au! WinEnter * wincmd _
+    augroup END
+    do maxCurrWin BufEnter
+    let g:windowMax=1
+  endif
+endfunction
+
+noremap <C-w>+ :call ToggleMaxWins()<CR>
+
 " Buffer
 " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 " Move between buffers
@@ -817,6 +840,9 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+
+:nnoremap <F5> "=strftime("%d-%m-%Y %H:%M:%S %z")<CR>
+:inoremap <F5> <C-R>=strftime("%d-%m-%Y %H:%M:%S %z")<CR>
 
 " Insert line
 " -----------
