@@ -1,0 +1,74 @@
+[user]
+	name = ca13
+	email = bloc.local@gmail.com
+
+[push]
+  default = matching
+
+[merge]
+  ff = only
+
+[fetch]
+  prune = true
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = green reverse
+  local = green
+  remote = red bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+# URL shorthands
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+
+[url "git://github.com/"]
+  insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+[alias]
+  a = add --all
+  b = branch
+  ba = branch -a
+  bd = branch -d
+  bv = branch -v
+  br = branch -r
+  c = commit -am
+  cd = commit --amend
+  co = checkout
+  d = diff
+  f = fetch
+  l = log --oneline --graph --decorate
+  lg = log --pretty=nice --date-order --graph --all
+  ls = ls-files
+  m = merge
+  uc = reset --soft HEAD^   # Uncommit (Go back before last commit)
+  us = reset HEAD        # Unstage (remove files from index: tracking)
+  r = remote
+  s = status
+  sb = status -sb
+  st = stash
+  t = tag
+  alias = !git config --list | grep alias

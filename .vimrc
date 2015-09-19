@@ -1032,6 +1032,10 @@ endif
 " Ctrlp
 " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 if isdirectory(expand(expand(s:bundle_dir, 1) . '/ctrlp.vim/'))
+  if isdirectory(expand(s:cache_dir, 1))
+    call CreateDir(s:cache_dir . '/ctrlp/')
+    let g:ctrlp_cache_dir = expand(s:cache_dir, 1) . '/ctrlp/'
+  endif
   let g:ctrlp_working_path_mode = 'ra'
   nnoremap <silent> <D-t> :CtrlP<CR>
   nnoremap <silent> <D-r> :CtrlPMRU<CR>
@@ -1084,7 +1088,7 @@ endif
 function! InsertFiglet()
   let text = input("Text: ")
   let font = input("Font: ", "big")
-  let lineBegin = input("Begin of line: ", " " ")
+  let lineBegin = input("Begin of line: ", " * ")
   execute "r!figlet -w 150 ".shellescape(text)." -f ".shellescape(font)."|sed -e 's/\\(.*\\)/".lineBegin."\\1/'|sed -e 's/ \\+$//'"
 endfunction
 if executable('figlet')
@@ -1308,6 +1312,11 @@ if count(g:ca13_bundle_groups, 'neocomplete')
   let g:neocomplete#max_list = 15
   let g:neocomplete#force_overwrite_completefunc = 1
 
+  if isdirectory(expand(s:cache_dir, 1))
+    call CreateDir(s:cache_dir . '/neosnippets/')
+    let g:neosnippet#snippets_directory = expand(s:cache_dir, 1) . '/neosnippets/'
+  endif
+
   " Define dictionary.
   let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
@@ -1412,7 +1421,7 @@ if count(g:ca13_bundle_groups, 'neocomplete')
   let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
   let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
 
-" NeoComplete
+" NeoComplcache
 " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 elseif count(g:ca13_bundle_groups, 'neocomplcache')
   let g:acp_enableAtStartup = 0
