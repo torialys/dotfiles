@@ -149,7 +149,7 @@ if executable('tmux')
 endif
 
 if !exists('g:ca13_bundle_groups')
-    let g:ca13_bundle_groups=[ 'general', 'programming', 'neocomplete', 'blade', 'c', 'csv', 'docker', 'go', 'html', 'javascript', 'nginx', 'php', 'python', 'ruby', 'scala', 'sql', 'writting' ]
+    let g:ca13_bundle_groups=[ 'general', 'programming', 'neocomplcache', 'blade', 'c', 'csv', 'docker', 'go', 'html', 'javascript', 'nginx', 'php', 'python', 'ruby', 'scala', 'sql', 'writting' ]
 endif
 
 
@@ -197,7 +197,6 @@ if !exists("g:override_ca13_bundles")
 
     if executable('ctags')
       Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-      nnoremap <C-t> :TlistToggle<CR>
     endif
   endif
 
@@ -1246,6 +1245,7 @@ endif
 " =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 if isdirectory(expand(expand(s:bundle_dir, 1) . '/tagbar/'))
   nnoremap <silent> <leader>tt :TagbarToggle<CR>
+  nnoremap <C-t> :TlistToggle<CR>
 endif
 
 " UndoTree
